@@ -1,0 +1,69 @@
+// procedure that read an array
+PROCEDURE read_array( VAR l:INTEGER,VAR tab : ARRAY_OF FLOAT[length];)
+VAR
+    i:INTEGER
+BEGIN
+    FOR i FROM 0 TO l-1 DO
+        Read tab[i];
+    END_FOR
+END
+// Procedure that do a dot product between two vectors
+PROCEDURE dot_product(VAR l:INTEGER,VAR T1:ARRAY_OF FLOAT[l], VAR T2:ARRAY_OF FLOAT[l])
+VAR
+    ps : FLOAT :=0;
+    i:INTEGER := 0;
+BEGIN
+    FOR i FROM 0 TO l-1 DO
+        ps := ps + (T1[i]*T2[i]);
+    END_FOR
+END
+// function that return a value of two vectors
+FUNCTION dot_product(VAR l:INTEGER,VAR T1:ARRAY_OF FLOAT[l],VAR T2:ARRAY_OF FLOAT[l]) : FLOAT
+VAR
+    ps : FLOAT :=0;
+    i:INTEGER := 0;
+BEGIN
+    FOR i FROM 0 TO l-1 DO
+        ps := ps + (T1[i]*T2[i]);
+    END_FOR
+    RETURN ps ;
+END
+
+
+ALGORITHM vector_calculation
+VAR
+    Vector1 : ARRAY_OF FLOAT[l];
+    Vector2 : ARRAY_OF FLOAT[l];
+    i:INTEGER := 0;
+    n:INTEGER := 0;
+    l:INTEGER;
+    count:INTEGER := 1; // the number of vector pairs in n vectors pairs
+BEGIN
+    // give the lengh of the 2 vectors
+    Read(l);
+    // the number of vectors pairs
+    Read(n); 
+
+    // when we use the procedure dot_product
+    WHILE (count <= n ) DO
+        // initialization of Vector1
+        read_array(l,Vector1);
+        // initialization of Vector2
+        read_array(l,Vector1);
+        IF (dot_product(l,Vector1,Vector2) == 0) THEN
+            Write("the two vectors are orthogonal");
+        END_IF
+        count := count + 1;
+    END_WHILE
+
+    // when we use the function dot_product
+    WHILE (count <= n ) DO
+        // initialization of Vector1
+        read_array(l,Vector1);
+        // initialization of Vector2
+        read_array(l,Vector1);
+        IF (dot_product(l,Vector1,Vector2) == 0) THEN
+            Write("the two vectors are orthogonal");
+        END_IF
+        count := count + 1;
+    END_WHILE
